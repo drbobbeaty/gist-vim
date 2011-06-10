@@ -323,7 +323,7 @@ function! s:GistWrite(fname)
 endfunction
 
 function! s:GistGet(user, token, gistid, clipboard)
-  let url = 'https://gist.github.com/'.a:gistid.'.txt'
+  let url = 'https://raw.github.com/gist/'.a:gistid
   let winnum = bufwinnr(bufnr(s:bufprefix.a:gistid))
   if winnum != -1
     if winnum != bufwinnr('%')
@@ -331,7 +331,7 @@ function! s:GistGet(user, token, gistid, clipboard)
     endif
     setlocal modifiable
   else
-    exec 'silent split' s:bufprefix.a:gistid
+    exec 'silent edit' s:bufprefix.a:gistid
   endif
   filetype detect
   silent %d _
